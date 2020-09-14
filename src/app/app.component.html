@@ -1,0 +1,304 @@
+
+<h1 class="heading_sytl">SHRI GOVIND FOOD's & MASALA UDYOG</h1>
+<h1 class="heading_bil">Billing Desk</h1>
+
+
+<div class="form_design">
+  <form [formGroup]="billSubmit">
+
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" class="form-control input_field" placeholder="Enter Buyer name" formControlName="bName" required>
+      </div>
+      <div class="col-md-6">
+        <input type="number" class="form-control input_field" placeholder="Enter bill no" formControlName="bnum" required>
+      </div>
+    </div>
+
+    <textarea name="message" class="form-control input_field" rows="8" placeholder="Enter Address" cols="10" formControlName="adrs" required></textarea>
+
+    <div class="row">
+      <div class="col-md-4">
+        <input type="number" class="form-control input_field" placeholder="Phone no" formControlName="phone" required>
+      </div>
+
+      <div class="col-md-4">
+        <input type="number" class="form-control input_field" placeholder="Enter GST number" formControlName="gstnumber" required>
+      </div>
+
+      <div class="col-md-4">
+        <input type="text" class="form-control input_field" placeholder="Enter state name" formControlName="state" required>
+      </div>
+
+    </div>
+ 
+    <div class="row" style="margin-top: 2%;">
+      <div class="col-md-6">
+         <p style="margin-left: 33%; color: white;"><b>Product decisions</b></p>
+      </div>
+      <!-- <div class="col-md-4">
+        <p style="margin-left: 45%; color: white;"><b>Price</b></p>
+      </div> -->
+      <div class="col-md-6" >
+          <p style="margin-left: 45%; color: white;"><b>Quantity</b></p>
+      </div>
+    </div>
+
+<!-- Mirch powder star -->
+    <div class="row" style="margin: 10px 0px 10px 0px;">
+      <div class="col-md-6">
+          <!-- <button type="button" class="btn btn-danger" style="width: 50%;border-radius:10px;margin-left:25%;" (click)="mirchPowder('Mirch-powder')" >Mirch-powder</button> -->
+
+          <select  class='form-control'(change)="changingProduct($event.target.value)">
+            <option>---Please select item---</option>
+            <option *ngFor="let data of productList">{{data}}</option>
+          </select>
+
+      </div>
+
+
+      <div class="col-md-6">
+
+        <select *ngIf="mirchPow == true" class='form-control'(change)="changingValueMirch($event.target.value)">
+          <option>---Please select item---</option>
+          <option *ngFor="let data of waitList">{{data}}</option>
+        </select>
+
+        <select *ngIf="haldiDhani == true" class='form-control'(change)="changingValueHalDha($event.target.value)">
+          <option>---Please select item---</option>
+          <option *ngFor="let data of waitList">{{data}}</option>
+        </select>
+
+        <select *ngIf="jeera == true" class='form-control'(change)="changingValueJeera($event.target.value)">
+          <option>---Please select item---</option>
+          <option *ngFor="let data of waitList">{{data}}</option>
+        </select>
+
+        <select *ngIf="souff == true" class='form-control'(change)="changingValueSouff($event.target.value)">
+          <option>---Please select item---</option>
+          <option *ngFor="let data of waitList">{{data}}</option>
+        </select>
+
+
+        <!-- <div class="row">
+          <div class="col-md-3"> 
+            <button type="button" class="btn btn-info"  (click)="mirchPowderRate('30')">30 Rs</button>
+          </div>
+          <div class="col-md-3"> 
+            <button type="button" class="btn btn-info"  (click)="mirchPowderRate('55')"> 55Rs</button>
+        </div>
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-info"  (click)="mirchPowderRate('125')">125 Rs</button>
+      </div>
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-info"  (click)="mirchPowderRate('240')">240 Rs</button>
+      </div>
+      </div> -->
+      </div>
+
+
+      <!-- <div class="col-md-4">
+        <input type="text" value="{{gram100}}" > -->
+        <!-- <div class="row">
+            <div class="col-md-3"> 
+              <button type="button" class="btn btn-default" (click)="wigthValue('100 Gm')">100 Gm</button>
+            </div>
+            <div class="col-md-3"> 
+              <button type="button" class="btn btn-default" (click)="wigthValue('200 Gm')">200 Gm</button>
+          </div>
+          <div class="col-md-3"> 
+            <button type="button" class="btn btn-default" (click)="wigthValue('500 Gm')">500 Gm</button>
+        </div>
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-default" (click)="wigthValue('1 kg')">1 Kg</button>
+      </div>
+        </div> -->
+      <!-- </div> -->
+    </div>
+<!-- Mirch powder end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Haldi powder start -->
+<!-- <div class="row" style="margin: 10px 0px 10px 0px;">
+  <div class="col-md-4">
+      <button type="button" class="btn btn-warning" style="width: 50%;border-radius:10px;margin-left:25%;" (click)="mirchPowder('Haldi-powder')">Haldi-powder</button>
+  </div>
+  <div class="col-md-4">
+    
+    <div class="row">
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-info"  (click)="mirchPowderRate('20')">20 Rs</button>
+      </div>
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-info"  (click)="mirchPowderRate('38')">38 Rs</button>
+    </div>
+    <div class="col-md-3"> 
+      <button type="button" class="btn btn-info"  (click)="mirchPowderRate('85')">85 Rs</button>
+  </div>
+  <div class="col-md-3"> 
+    <button type="button" class="btn btn-info"  (click)="mirchPowderRate('160')">160 Rs</button>
+</div>
+  </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-default" (click)="wigthValue('100 gm')">100 Gm</button>
+        </div>
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-default" (click)="wigthValue('200 gm')">200 Gm</button>
+      </div>
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-default" (click)="wigthValue('500 Gm')">500 Gg</button>
+    </div>
+    <div class="col-md-3"> 
+      <button type="button" class="btn btn-default" (click)="wigthValue('1 kg')">1 Kg</button>
+  </div>
+    </div>
+  </div>
+</div> -->
+<!-- Haldi powder end -->
+
+<!-- Dhaniya-powder start -->
+<!-- <div class="row" style="margin: 10px 0px 10px 0px;">
+  <div class="col-md-4">
+      <button type="button" class="btn btn-success" style="width: 50%;border-radius:10px;margin-left:25%;" (click)="mirchPowder('Dhaniya-powder')">Dhaniya-powder</button>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-info"  (click)="mirchPowderRate('20')">20 Rs</button>
+      </div>
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-info"  (click)="mirchPowderRate('38')">38 Rs</button>
+    </div>
+    <div class="col-md-3"> 
+      <button type="button" class="btn btn-info"  (click)="mirchPowderRate('85')">85 Rs</button>
+  </div>
+  <div class="col-md-3"> 
+    <button type="button" class="btn btn-info"  (click)="mirchPowderRate('160')">160 Rs</button>
+</div>
+  </div>
+
+  </div>
+
+  <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-default" (click)="wigthValue('100 gm')">100 Gm</button>
+        </div>
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-default" (click)="wigthValue('200 gm')">200 Gm</button>
+      </div>
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-default" (click)="wigthValue('500 gm')">500 Gm</button>
+    </div>
+    <div class="col-md-3"> 
+      <button type="button" class="btn btn-default" (click)="wigthValue('1 kg')">1 Kg</button>
+  </div>
+    </div>
+  </div>
+</div> -->
+<!-- Dhaniya-powder end -->
+
+<!-- Zire start  -->
+<!-- <div class="row" style="margin: 10px 0px 10px 0px;">
+  <div class="col-md-4">
+      <button type="button" class="btn" style="width: 50%;border-radius:10px;margin-left:25%; background-color: rosybrown;color:white;" (click)="mirchPowder('Zira')">Zira</button>
+  </div>
+  <div class="col-md-4">
+
+
+    <div class="row">
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-info"  (click)="mirchPowderRate('25')">25 Rs</button>
+      </div>
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-info"  (click)="mirchPowderRate('45')">45 Rs</button>
+    </div>
+    <div class="col-md-3"> 
+      <button type="button" class="btn btn-info"  (click)="mirchPowderRate('110')">110 Rs</button>
+  </div>
+  <div class="col-md-3"> 
+    <button type="button" class="btn btn-info"  (click)="mirchPowderRate('210')">210 Rs</button>
+</div>
+  </div>
+
+    
+  </div>
+
+  
+
+  <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-default" (click)="wigthValue('100 gm')">100 Gm</button>
+        </div>        
+        <div class="col-md-3"> 
+          <button type="button" class="btn btn-default" (click)="wigthValue('200 gm')">200 Gm</button>
+      </div>
+      <div class="col-md-3"> 
+        <button type="button" class="btn btn-default" (click)="wigthValue('500 Gm')">500 Gm</button>
+    </div>
+    <div class="col-md-3"> 
+      <button type="button" class="btn btn-default" (click)="wigthValue('1 kg')">1 Kg</button>
+  </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Zire end -->
+
+
+    
+
+    <button (click)="submitBill()" class="btn btn-primary input_field" [disabled]="billSubmit.controls['bName' && 'adrs' && 'phone' && 'gstnumber' && 'state' && 'bnum'].invalid">Submit</button>
+    
+  </form>
+
+<div class="row" style=" background-color: white; margin: 35px 34px 30px 95px; border-radius: 15px;">
+  <div class="col-md-4">
+    <h3>Product</h3>
+    <p *ngFor="let lm of selectedProductList">{{lm}}</p>
+  </div> 
+  <div class="col-md-4">
+    <h3>Quantity</h3>
+    <p *ngFor="let qu of selectWitList">{{qu}}</p>
+  </div>
+  <div class="col-md-4">
+    <h3>Price</h3>
+      <p *ngFor="let rat of gram100">{{rat}}</p>
+      <!-- <p>{{gram100}}</p> -->
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+<router-outlet></router-outlet>
